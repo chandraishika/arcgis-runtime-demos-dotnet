@@ -26,6 +26,7 @@ namespace ArcGISSpatialAnchor
 
             // Initialize Spatial Anchors
             manager = new SpatialAnchorsManager(AccountDetails.SpatialAnchorsAccountId, AccountDetails.SpatialAnchorsAccountKey, arSceneView);
+            manager.AnchorLocated += Manager_AnchorLocated;
         }
 
         private async void InitializeScene()
@@ -46,13 +47,19 @@ namespace ArcGISSpatialAnchor
                 await Navigation.PopAsync();
             }
         }
-
+        Microsoft.Azure.SpatialAnchors.CloudSpatialAnchorWatcher currentWatcher;
         protected override void OnAppearing()
         {
             Status.Text = "Move your device in a circular motion to detect surfaces";
             arSceneView.StartTrackingAsync();
             manager.StartSession();
+            currentWatcher = manager.StartLocating(new Microsoft.Azure.SpatialAnchors.AnchorLocateCriteria() { });
+
             base.OnAppearing();
+        }
+
+        private void Manager_AnchorLocated(object sender, Microsoft.Azure.SpatialAnchors.CloudSpatialAnchor e)
+        {
         }
 
         protected override void OnDisappearing()
