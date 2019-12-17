@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="ArcGISSpatialAnchor.ArcGISSpatialAnchor" android:versionCode="1" android:versionName="1.0" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="26" android:targetSdkVersion="28" />
+  
+  <!-- Required for relocalization based on geolocation -->
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  
+	<!-- Both "AR Optional" and "AR Required" apps require CAMERA permission. -->
+	<uses-permission android:name="android.permission.CAMERA" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+  
+  <!-- Required for relocalization based on Wi-Fi -->
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+  <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+  
+  <!-- Required for relocalization based on Bluetooth -->
+  <uses-permission android:name="android.permission.BLUETOOTH" />
+  <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+  
+	<!-- Indicates that app requires ARCore ("AR Required"). Ensures app is only
+     visible in the Google Play Store on devices that support ARCore.
+     For "AR Optional" apps remove this line. -->
+	<uses-feature android:name="android.hardware.camera.ar" android:required="true" />
+	<application android:label="ArcGISSpatialAnchor">
+		<!-- Indicates that app requires ARCore ("AR Required"). Causes Google
+         Play Store to download and install ARCore along with the app.
+         For an "AR Optional" app, specify "optional" instead of "required".
+    -->
+		<meta-data android:name="com.google.ar.core" android:value="required" />
+	</application>
+</manifest>
